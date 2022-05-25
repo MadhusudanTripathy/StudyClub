@@ -1,0 +1,30 @@
+<div class="nav-container">
+        <nav class="nav-bar">
+            <div class="nav-logo">
+                <li><a href="#"><i class="fa-solid fa-cube"></i>studyclub</a></li>
+            </div>
+
+            <div class="search-container">
+                <form action="#">
+                    <input type="text" placeholder="Search.." name="search" id="">
+                    <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                </form>
+            </div>
+
+            <div class="nav-lists">
+                <ul class="nav-items">
+                    <!-- <li><a href="#">Home</a></li> -->
+                    <!-- <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li> -->
+                    <%# <li><button class="btn btn-active">Sign in</button></li> %>
+                     <li><a href=""> <%= current_user.full_name %> </a></li> 
+
+                    <li><%= button_to :SignOut,destroy_user_session_path, method: :delete, class: 'btn btn-active' %></li>
+                    
+
+                </ul>
+            </div>
+
+
+        </nav>
+</div>

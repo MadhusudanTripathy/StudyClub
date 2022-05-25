@@ -1,0 +1,24 @@
+<%= @question_instance.question%>
+<br>
+<% @question_instance.answers.each do |answer_instance|%>
+  <br>
+  ------- <br>
+  <%= get_user_full_name(answer_instance.user_id) %>:
+  <%=answer_instance.answer%>
+  <% if answer_instance.user_id == current_user.id%>
+    <%= button_to 'Delete Answer', [answer_instance.question, answer_instance], method: :delete %>
+  <%end%>
+<% end %>
+
+
+<%= form_for [@question_instance,@question_instance.answers.build] do |f|%>
+    <%= f.text_field :answer,placeholder:"type your answer..." %>
+    <%=f.hidden_field :user_id, value: current_user.id%>
+    <%= f.submit "Answer", class:"answer-btn"%>
+
+<%end%>
+
+
+<% if @question_instance.user_id == current_user.id%>
+  <%= button_to 'Delete Question', question_path(@question_instance), method: :delete %>
+<%end%>

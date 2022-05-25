@@ -1,0 +1,65 @@
+<%= render 'layouts/navbar'%>
+<%= render 'layouts/left_sidebar'%>
+<div class="middle-content">
+  <div class="">
+    <h1>
+      Welcome To Dashboard
+    </h1>
+    <% if @dashboard %>
+      <%= image_tag @dashboard.image, class:'avatar-img' %>
+      <%# <%= url_for @dashboard.image %>
+      <%# <%= @dashboard.image.inspect %>
+            <p>
+        <strong>
+          Name:
+        </strong>
+        <%= @user_name%>
+      </p>
+      <p>
+        <strong>
+          City:
+        </strong>
+        <%= @dashboard.city%>
+      </p>
+      <p>
+        <strong>
+          Qualifications:
+        </strong>
+        <%= @dashboard.qualification%>
+      </p>
+      <p>
+        <strong>
+          Institute:
+        </strong>
+        <%= @dashboard.institute_name%>
+      </p>
+      <p>
+        <strong>
+          Bio:
+        </strong>
+        <%= @dashboard.bio%>
+      </p>
+      <%= link_to :Edit,edit_dashboard_path(@dashboard.user_id)  %>
+    <% else %>
+      <%= link_to :Create,new_dashboard_path %>
+    <% end %>
+  </div>
+  <div>
+    <h1>Questions Aasked</h1>
+    <% @questions_asked.each do |q| %>
+      <%= link_to q.question, question_path(q) %>
+      <br>
+    <% end %>
+    <p>
+    </p>
+  </div>
+  <div>
+    <h1>Questions Answered</h1>
+    <% @questions_answered.each do |a| %>
+      <p>
+        <%= link_to get_question(a.id),question_path(a.question_id)%>
+      </p>
+    <% end %>
+  </div>
+</div>
+<%=  render 'layouts/right_sidebar'%>

@@ -1,0 +1,51 @@
+<%= render 'layouts/navbar'%>
+<%= render 'layouts/left_sidebar'%>
+<div class="middle-content">
+  <div class="">
+    <%= form_for :questions,class: "ask_form",url: questions_path do |f| %>
+      <div class="ask_section">
+        <%=f.text_field :question, placeholder: "Ask Great Questions", class:"question-input"%>
+        <%=f.hidden_field :user_id, value: current_user.id, class:"question-input"%>
+        <%=f.submit "Ask", class:'ask-btn'%>
+      </div>
+    <%end%>
+    <hr>
+    <%# <h1>Questions</h1> %>
+    <%@question_lists.reverse_each do |q|%>
+      <div class="question-container">
+         <%= image_tag get_dashboard_instance(q.user_id).image ,class:'avatar-img'%>
+        <%# <%=get_dashboard_instance(q.user_id).image.to_s%>
+        <br>
+          <h3>
+          <%= get_user_full_name(q.user_id) %>
+          </h3>
+          <p> <%=q.created_at.to_fs(:short)%></p>
+        <div class="question">
+          <%=link_to q.question, question_path(q)  %>
+        </div>
+        <p>answers:</p>
+        <% q.answers.each do |a|%>
+          <div class="answer">
+            <strong> <%= get_user_full_name(a.user_id) %></strong>:<%=a.answer%>
+          </div>
+        <% end %>
+        <%= form_for [q,q.answers.build] do |f|%>
+          <div class="answer-section">
+            <%= f.text_field :answer,placeholder:"type your answer...", class:"answer-input" %>
+            <%=f.hidden_field :user_id, value: current_user.id%>
+            <%= f.submit "Answer", class:"answer-btn"%>
+          </div>
+        <%end%>
+        <p><%= q.question_reactions.count %> <%= (q.question_reactions.count) == 1 ? 'Like' : 'Likes'%></p>
+        <% pre_like = q.question_reactions.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= button_to 'Unlike',[q, pre_like] , method: :delete %>
+        <% else %>
+        <%= button_to 'Like', question_question_reactions_path(q), method: :post %>
+        <% end %>
+        
+      </div>
+    <%end%>
+  </div>
+</div>
+<%# <%=  render 'layouts/right_sidebar'%> %>

@@ -1,0 +1,25 @@
+<%= render 'layouts/navbar'%>
+<%= render 'layouts/left_sidebar'%>
+<div class="form">
+<%= form_for @dashboard, url: dashboard_index_path do |f| %>
+<%= f.text_field :qualification,placeholder: 'Enter Qualifications' %>
+<br>
+<%= f.text_field :institute_name,placeholder: 'Enter Institute Name' %>
+<br>
+<%= f.text_field :city,placeholder: 'Enter City Name' %>
+<br>
+<%= f.text_field :bio,placeholder: 'Enter Bio' %>
+<br>
+<div>
+  <%=f.label :image%>
+  <%=f.file_field :image%>
+</div>
+<div style="display:none;">
+<%= f.number_field :user_id, value:current_user.id%>    
+</div>
+<br>
+<%= f.submit :submit%>
+<br>
+<%end%>
+</div>
+<%# <%= render 'layouts/right_sidebar'%> %>

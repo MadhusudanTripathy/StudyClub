@@ -1,0 +1,135 @@
+*{
+    
+}
+.left_sidebar{
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* z-index: -10; */
+}
+.right_sidebar{
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* z-index: -10; */
+}
+.middle-content{
+    /* text-align: center; */
+    /* justify-content: center; */
+    margin: 70px auto   ;
+        width: 60%;
+}
+.sidebar-btn{
+    text-decoration: none;
+    background-color: #fff;
+    /* display: block; */
+    width: 100px;
+    text-align: left;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+}
+.ask_form{
+    width: 100%;   
+    height: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ask_section{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.15);
+    height: 40px;
+    border-radius: 40px;
+    border: none;
+    margin-bottom: 6px;
+    
+}
+
+hr{
+    color: aqua;
+}
+.question-input{
+    height: 40px;
+    border-radius: 40px;
+    border: none;
+    width: 700px;
+    outline: none;
+    padding: 0 20px;
+    /* text-align: center;   */
+}
+
+.ask-btn ,.answer-btn{
+    border: none;
+    height: 40px;
+    background-color: rgb(0, 115, 255);
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 15px;
+}
+
+.question-container {
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.35);
+    margin: 10px 16px 10px 16px; 
+    padding: 12px; 
+    border-radius: 8px;   
+}
+.question-container .question{
+    font-weight: bold;
+    font-size: 18px;
+}
+.question-container .answer{
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.answer-form{
+    width: 600px;       
+    height: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.answer-section{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.35);
+    border-radius: 40px;
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between; 
+}
+.answer{
+    font-style: italic; 
+}
+
+ .answer-input{
+    height: 40px;
+    border-radius: 40px;
+    border: none;
+    width: 600px;
+    outline: none;
+    padding: 0 20px;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;      
+}
+.avatar-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50px;
+}
