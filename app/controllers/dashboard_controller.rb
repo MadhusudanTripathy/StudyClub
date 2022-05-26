@@ -65,6 +65,10 @@ class DashboardController < ApplicationController
       puts '--------------------------'
     end
   end
+  def get_category
+    @category_list=Question.where(tag:params[:tag])
+    render 'category'
+  end
   private 
   def dashboard_params
     params.require(:dashboard).permit(:qualification, :institute_name, :city, :bio, :image, :user_id)

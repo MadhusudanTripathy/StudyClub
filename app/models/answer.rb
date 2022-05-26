@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
-  belongs_to :question
   validates :answer, presence: true
+  belongs_to :question
+  has_many :answer_reactions
 end
   

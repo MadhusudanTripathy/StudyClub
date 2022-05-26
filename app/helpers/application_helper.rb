@@ -15,4 +15,17 @@ module ApplicationHelper
         @test=Dashboard.find_by(user_id: id)
         return @test
     end
+    def get_trend_hash
+        @trend_list=Question.all.group(:tag).count.sort_by{|_key, value| value}.reverse
+        puts '---------------------------------'
+        puts '---------------------------------'
+        puts '---------------------------------'
+        puts '---------------------------------'
+        puts @trend_list.class
+        puts '---------------------------------'
+        puts '---------------------------------'
+        puts '---------------------------------'
+        puts '---------------------------------'
+        return @trend_list
+    end
 end

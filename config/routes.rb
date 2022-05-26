@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   root "welcome#index"  
   devise_for :users
+  resources :dashboard, :only => [:index, :new, :create, :edit, :update]
+  resources :questions do
+    resources :question_reactions, :only => [:create, :destroy]
+    resources :answers do
+      resources :answer_reactions, :only => [:create, :destroy]
+    end
+  end
+  get 'welcome/index'
   get 'guide/index'
   get 'community/index'
-  resources :dashboard, :only => [:index, :new, :create, :edit, :update]
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  # Defines the root path route ("/")
-  resources :questions do
-    resources :question_reactions
-    resources :answers
-  end
+  get '/category/:tag', :to => 'dashboard#get_category', :as => 'category'
 end
