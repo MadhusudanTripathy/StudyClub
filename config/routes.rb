@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'rooms/index'
   root "welcome#index"  
   devise_for :users
   resources :dashboard, :only => [:index, :new, :create, :edit, :update]
@@ -7,6 +9,9 @@ Rails.application.routes.draw do
     resources :answers do
       resources :answer_reactions, :only => [:create, :destroy]
     end
+  end
+  resources :rooms do
+    resources :messages
   end
   get 'welcome/index'
   get 'guide/index'
