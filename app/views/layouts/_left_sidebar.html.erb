@@ -1,6 +1,108 @@
-<div class="left_sidebar">
-<%= link_to "Explore", questions_path, class: "sidebar-btn" %>
-<%= link_to "Dashboard", dashboard_index_path, class: "sidebar-btn" %>
-<%= link_to "Community", community_index_path, class: "sidebar-btn" %>
-<%= link_to "Guide", guide_index_path, class: "sidebar-btn" %>
+<div class="left-navbar">
+  <div class="left-nav-items">
+    <%= link_to "Explore", questions_path %>
+    <%= link_to "Dashboard", dashboard_index_path %>
+    <%= link_to "Community", community_index_path %>
+    <%= link_to "Guide", guide_index_path %>
+  </div>
 </div>
+<div class="bottom-navbar text-alignments">
+        <a href="explore.html" class="fa fa-house-chimney-user"></a>
+        <a href="dashboard.html" class="fa fa-tachometer text-color"></a>
+        <a href="community.html" class="fa fa-message text-color"></a>
+        <div class="tooltip">
+            <button class="fa fa-sign-out"></button>
+            <span class="tooltiptext">Log out</span>
+        </div>
+    </div>
+<style>
+:root {
+    --background-color: #E0F1FF;
+    --text-heading: #303841;
+    --text-details: #cccccc;
+    --font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* .home-container{
+    display: flex;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom right, #e0f1ff, #e4edf9, #e7eaf3, #e7e8ec, #e6e6e6);
+} */
+
+.left-navbar{
+    flex: 1;
+    /* height: 89vh; */
+    display: grid;
+    padding:16px 12px;
+}
+.left-navbar .left-nav-items{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;     
+    outline: none;
+    min-height: 83vh;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+.left-nav-items a{
+    margin:20px auto;
+    text-align: center;
+    color:#fff;
+    padding:12px 0;
+    width: 120px;
+    background-color: #384955;
+    transition: background-color,box-shadow 0.3s ease;
+}
+.left-nav-items a:hover{
+    background-color: #7C8E9B;
+    color: #fff;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}
+.bottom-navbar {
+    /* text-align: center; */
+    /* background-image: linear-gradient(to bottom right, #e0f1ff, #e4edf9, #e7eaf3, #e7e8ec, #e6e6e6); */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: none;
+}
+
+.bottom-navbar a,.bottom-navbar button {
+    color:var(--text-color);
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    padding: 0.8rem ;
+    margin-bottom:1px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 950px){
+.left-navbar{
+    display:block;
+}
+.bottom-navbar{
+    opacity: 1;
+}
+.bottom-navbar a {
+        font-size: 1.5rem;
+        padding: 1rem 1rem;
+    
+    }
+
+}
+
+</style>

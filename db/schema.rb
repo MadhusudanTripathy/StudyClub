@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_093304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "tag"
+    t.string "tag", default: "Not Mentioned"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 

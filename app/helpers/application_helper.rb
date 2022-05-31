@@ -21,11 +21,12 @@ module ApplicationHelper
         puts '---------------------------------'
         puts '---------------------------------'
         puts '---------------------------------'
-        puts @trend_list.class
+        puts Question.all.group(:tag).count.inspect
         puts '---------------------------------'
         puts '---------------------------------'
         puts '---------------------------------'
         puts '---------------------------------'
         return @trend_list
     end
+    
 end

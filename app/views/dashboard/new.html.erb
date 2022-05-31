@@ -1,25 +1,248 @@
-<%= render 'layouts/navbar'%>
-<%= render 'layouts/left_sidebar'%>
-<div class="form">
-<%= form_for @dashboard, url: dashboard_index_path do |f| %>
-<%= f.text_field :qualification,placeholder: 'Enter Qualifications' %>
-<br>
-<%= f.text_field :institute_name,placeholder: 'Enter Institute Name' %>
-<br>
-<%= f.text_field :city,placeholder: 'Enter City Name' %>
-<br>
-<%= f.text_field :bio,placeholder: 'Enter Bio' %>
-<br>
-<div>
-  <%=f.label :image%>
-  <%=f.file_field :image%>
-</div>
-<div style="display:none;">
-<%= f.number_field :user_id, value:current_user.id%>    
-</div>
-<br>
-<%= f.submit :submit%>
-<br>
-<%end%>
-</div>
-<%# <%= render 'layouts/right_sidebar'%> %>
+   
+<section class="show">
+  <!-- popup box start -->
+  <div class="popup-outer">
+    <div class="popup-box">
+      <h4>Add Details</h4>
+            <%= form_for @dashboard,url:dashboard_index_path do |f| %>
+        <a href="./dashboard.html"><i id="close" class="bx bx-x close"></i></a>
+        <%= f.hidden_field :user_id, value:current_user.id%>
+        <div class="profile-text">
+          <!-- <img src="profile.jpg" alt=""> -->
+          <div class="text">
+            <div class="filed">
+              <label for="picture">Profile Picture</label><br>
+              <%=f.file_field :image,accept:"image/x-png,image/gif,image/jpeg" %>
+              <!-- <input type="text" name="name"> -->
+            </div>
+            <div class="field">
+              <label for="profession">Qualification</label><br>
+              <%= f.text_field :qualification,placeholder:'Enter Qualifications' %>
+            </div>
+            <div class="field">
+              <label for="institute">Institute</label><br>
+              <%= f.text_field :institute_name,placeholder: 'Enter Institute Name' %>
+            </div>
+            <div class="field">
+              <label for="city">City</label><br>
+              <%= f.text_field :city,placeholder: 'Enter City Name' %>
+            </div>
+          </div>
+          <div class="bio-field">
+            <span class="bio">About</span>
+            <%= f.text_area :bio,placeholder: 'Describe Your Self' %>
+          </div>
+        </div>
+        <div class="button">
+          <a href="./dashboard.html">Cancel</a>
+          <%= f.submit :Save, class:'send'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<style>
+
+  :root {
+    --background-color: #E0F1FF;
+    --text-heading: #303841;
+    --text-details: #cccccc;
+    --font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #536dfe;
+}
+
+section {
+    position: relative;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    margin: 1rem;
+}
+
+section .popup-outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+}
+
+section.show .popup-outer {
+    opacity: 1;
+    transform: scale(1);
+    margin: 4rem;
+}
+
+section .popup-box {
+    transition: box-shadow 0.3s;
+    box-shadow: 1px 1px 18px rgba(0, 0, 0, 0.6);
+    position: relative;
+    padding: 30px;
+    max-width: 600px;
+    max-height: auto;
+    width: 100%;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.popup-box .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    color: #b4b4b4;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.popup-box .close:hover {
+    color: #333;
+}
+
+section .popup-box .profile-text {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.profile-text .text {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.field label,
+.bio-field span {
+    color: var(--text-heading);
+}
+
+input[type=text] {
+    margin-top: 5px;
+    font-size: 14px;
+    padding: 4px 4px;
+    display: block;
+    width: 100%;
+    height: 30px;
+    background-color: transparent;
+    border: 2px solid #536dfe;
+}
+input[type=file]{
+    padding-top: 10px;
+}
+
+input[type=text]:focus {
+    outline: none;
+    border: 2px solid #275df1;
+}
+
+.bio-field {
+    margin-top: 1rem;
+}
+
+section .popup-box textarea {
+    min-height: 100px;
+    width: 100%;
+    margin-top: 10px;
+    outline: none;
+    border: 2px solid #536dfe;
+    padding: 12px;
+    /* border-radius: 6px; */
+    resize: none;
+    font-size: 16px;
+    font-weight: 400;
+    background: #f3f3f3;
+}
+
+section .popup-box .button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.popup-box .button button {
+    outline: none;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #6c7180;
+    margin-left: 8px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button a {
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--text-heading);
+    background: #eee;
+}
+
+.button a:hover {
+    background: rgb(220, 218, 218);
+}
+
+.button button.send:hover {
+    background: var(--text-heading);
+}
+
+.send{
+  padding: 10px 12px;
+  border:none;
+}
+h4 {
+    color: var(--text-heading);
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    section{
+        height: auto;
+    }
+    section .popup-box .profile-text .text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    section .popup-box {
+        max-width: 400px;
+        /* height:80%; */
+    }
+
+    section.show .popup-outer {
+        transform: scale(0.9);
+        margin: auto;
+    }
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.asking-section{
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+}
+</style>

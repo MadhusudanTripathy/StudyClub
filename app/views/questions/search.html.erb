@@ -4,9 +4,9 @@
     <%= render 'layouts/left_sidebar'%>
     <div class="section-middle">
       <br>
-      <h3><%= params[:tag] %> questions</h3>
+      <h3><%=@results.count%> Results Found </h3>
       <div class="asking-section" id="question-asked">
-        <%@category_list.reverse_each do |q|%>
+        <%@results.reverse_each do |q|%>
           <div class="asking-card">
             <div class="qna-card">
               <div class="avtar-response">

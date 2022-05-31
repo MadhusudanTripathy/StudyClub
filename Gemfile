@@ -46,7 +46,7 @@ gem "bootsnap", require: false
 
 gem 'devise'
 
-gem 'rails_refactor', '~> 1.4', '>= 1.4.6'
+gem 'webpacker'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

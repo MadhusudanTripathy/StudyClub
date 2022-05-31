@@ -4,17 +4,15 @@ class QuestionsController < ApplicationController
         @question_lists= Question.all
         # @question_lists.sort_by(&:tag)
         # @question_lists.order('tag')
-        puts '---------------------------------'
-        puts '---------------------------------'
-        puts '---------------------------------'
-        puts '---------------------------------'
-        puts '---------------------------------'
+        puts '+++++++++++++++++++++++++++++++++'
+        puts '+++++++++++++++++++++++++++++++++'
+        puts '+++++++++++++++++++++++++++++++++'
+        puts '+++++++++++++++++++++++++++++++++'
         puts @question_lists.group(:tag).count
-        puts '---------------------------------'
-        puts '---------------------------------'
-        puts '---------------------------------'
-        puts '---------------------------------'
-        puts '---------------------------------'
+        puts '+++++++++++++++++++++++++++++++++'
+        puts '+++++++++++++++++++++++++++++++++'
+        puts '+++++++++++++++++++++++++++++++++'
+        puts '+++++++++++++++++++++++++++++++++'
         @user=User.find(current_user.id)
     end
     def create
@@ -30,6 +28,14 @@ class QuestionsController < ApplicationController
         @question= @user.questions.find(params[:id])
         @question.destroy
         redirect_to questions_path
+    end
+    def search
+        if params[:q].blank?
+            respond_to questions_path and return
+        else
+            @parameter= params[:q].downcase
+            @results= Question.all.where("lower(question) LIKE :search", search:"%#{@parameter}%")
+        end
     end
     private
         def questions_params

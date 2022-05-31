@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
         puts "---------------------------------"
         puts "---------------------------------"
         @answer.destroy
-        redirect_to questions_path
+        redirect_to question_path(@question)
     end    
     private
         def answer_params

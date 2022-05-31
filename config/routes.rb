@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get 'guide/index'
   get 'community/index'
   get '/category/:tag', :to => 'dashboard#get_category', :as => 'category'
+  get '/search', :to => "questions#search"
+
 end

@@ -1,14 +1,722 @@
+<div class="container-bg">
+       <div class="nav-container">
 
-<div class='allo'>
+    <%= render 'layouts/navbar' %>
+        
+        <div class="container flex-alignments">
+            <section>
+                <div class="content flex-alignments">
+                    <div class="left-content text-alignments">
+                        <div class="highlight-content">
+                            <h1 class="text-alignments text-color">
+                                Find Your Best Answers
+                            </h1>
+                            <p class="text-alignments">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Magni placeat rerum
+                                qui nemo corporis dolore earum deleniti
+                                soluta dolor itaque?
+                            </p>
+                        </div>
+                        <div class="explore flex-alignments content-justify-center">
+                            <a class="btn" href="">explore</a>
+                        </div>
 
-<center>
-<%= link_to :SignIn,new_user_session_path  %>
-<%= link_to :SignUp,new_user_registration_path  %>
-</center>
+                    </div>
+                    <div class="right-content flex-alignments content-justify-center">
+                        <%= image_tag image_url('1.svg') %>
+                        <%# <img src="/1.svg" alt=""> %>
+                    </div>
+                </div>
+                <div class="bottom-img reveal flex-alignments">
+                        <%= image_tag image_url('5.svg') %>
+                    <%# <img src="/5.svg" alt=""> %>
+                </div>
+            </section>
+        </div>
+    </div>
+    <section>
+        <div class="feature-container flex-alignments">
+            <div class="reveal feature-paragraph text-alignments">
+                <p>
+                    Study Club Q&A communities are different. Here's how:
+                </p>
+            </div>
+            <div class="reveal feature-btn">
+                <a class="btn" href="">Take a Tour</a>
+            </div>
+            <div class="reveal cards flex-alignments">
+                <div class="reveal card flex-alignments content-justify-center border-style">
+                    <div class="card-avtar">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="card-heading">
+                        <h3>Expert communities.</h3>
+                    </div>
+                    <div class="card-details text-alignments">
+                        <p>Each of our communities is built by people passionate about a focused topic.</p>
+                    </div>
+                </div>
+                <div class="reveal card flex-alignments content-justify-center border-style">
+                    <div class="card-avtar">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                    <div class="card-heading">
+                        <h3>Find The Right Answer</h3>
+                    </div>
+                    <div class="card-details text-alignments">
+                        <p>Experts like you can vote on posts, so the most helpful answers are easy to find.</p>
+                    </div>
+                </div>
+                <div class="reveal card flex-alignments content-justify-center border-style">
+                    <div class="card-avtar">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                    <div class="card-heading">
+                        <h3>Share Your knowledge.</h3>
+                    </div>
+                    <div class="card-details text-alignments">
+                        <p>Earn reputation and additional privileges for posts others find helpful.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="about-container flex-alignments">
+            <div class="about flex-alignments text-color">
+                <h1 class="reveal">About</h1>
+                <p class="reveal text-alignments">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa dolorem numquam necessitatibus?</p>
+            </div>
+            <div class="reveal top flex-alignments text-color">
+                <div class="left-card">
+                    <div class="reveal card border-style">
+    
+                    </div>
+                </div>
+                <div class="details">
+                    <h1>Heading</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia facilis laborum placeat iste
+                        consequuntur odio quae! Numquam quo blanditiis pariatur.</p>
+                </div>
+            </div>
+            <div class="reveal middle flex-alignments">
+                <div class="right-card">
+                    <div class="reveal card border-style">
+    
+                    </div>
+                </div>
+                <div class="details text-color">
+                    <h1>Heading</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia facilis laborum placeat iste
+                        consequuntur odio quae! Numquam quo blanditiis pariatur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="containers">
+            <div class="sec aboutus">
+                <h2>About Us</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum odio earum incidunt laudantium esse
+                    dolores rerum veniam,
+                    fugiat ex, suscipit saepe possimus asperiores neque tempore laborum inventore! Delectus alias,
+                    pariatur est corporis
+                    voluptatem minus, quia hic nisi perspiciatis eveniet vel.
+                </p>
+                <ul class="sci">
+                    <li><a class="content-justify-center" href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="content-justify-center" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="content-justify-center" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a class="content-justify-center" href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="sec contact">
+                <h2>Contact Us</h2>
+                
+            </div>
+        </div>
+    </footer>
+
 </div>
 
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal);
+    
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+    
+          for(var i = 0; i < reveals.length; i++){
+              
+              var windowheight = window.innerHeight;
+            var revealtop = reveals[i].getBoundingClientRect().top;
+            var revealpoint = 150;
+    
+            if(revealtop < windowheight - revealpoint){
+                reveals[i].classList.add('active');
+            }
+            else{
+                reveals[i].classList.remove('active');
+            }
+          }
+        }
+    </script>
+<!-- 
+.container section .content{
+    text-align: center;
+    max-width: 900px;
+}
+.content .right-content{
+    /* position: relative; */
+    top: 11%;
+    right: 0;
+    max-width: 50%;
+}
+
+.content .right-content img{
+    float: right;
+    width: 100%;
+}
+
+.content .left-content{
+    display: flex;
+    max-width: 60%;
+    flex-direction: row;
+    margin: 50px auto;
+    float: left;
+}
+.content .left-content .highlight-content{
+    padding: 5% 0;
+}
+.content .left-content .highlight-content h1{
+    font-size: 50px;
+    text-align: left;
+
+}
+
+
+ -->
 <style>
-.allo{
-    margin-top:100px;
+:root {
+    --main-color: #E0F1FF;
+    --text-color: #303841;
+    --text-heading: #cccccc;
+    --font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-transition:-webkit-transform 2s;
+    transition: transform 2s;
+}
+
+body {
+    overflow-x: hidden;
+}
+/* home page hero section start */
+.container {
+    left: 0;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.container section {
+    min-width: 100%;
+}
+
+.container section .content {
+    justify-content: space-around;
+}
+
+.content .left-content {
+    flex: 1;
+}
+
+.content .right-content {
+    width: 100%;
+    flex: 1;
+}
+
+.content .right-content img {
+    width: 100%;
+    -webkit-transition:-webkit-transform 2s;
+    transition: transform 2s;
+    transform: translate(0,10%);
+}
+
+.content .left-content .highlight-content h1 {
+    font-size: 70px;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.content .left-content .highlight-content p {
+    font-size: 20px;
+    text-align: left;
+    margin: 20px 5% 0;
+}
+
+.content .explore .btn {
+    background-color: var(--text-color);
+    color: var(--main-color);
+    text-transform: capitalize;
+
+}
+
+.content .explore {
+    justify-content: end;
+    margin: 20px 3%;
+}
+
+section .bottom-img {
+    max-width: 50%;
+}
+
+section .bottom-img img {
+    margin-left: 2%;
+    width: 50%;
+}
+
+@keyframes killer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* home page hero section end */
+
+.feature-container {
+    flex-direction: column;
+}
+
+.feature-container .feature-paragraph {
+    max-width: 100%;
+    padding: 50px;
+}
+
+.feature-container .feature-paragraph p {
+    color: var(--main-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.feature-container .btn {
+    background-color: var(--text-color);
+    color: var(--main-color);
+    width: 12%;
+}
+
+.feature-container .btn:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature-container .cards {
+    flex-direction: row;
+    padding: 60px;
+}
+
+.feature-container .cards .card {
+    flex-direction: column;
+    row-gap: 30px;
+    height: 280px;
+    width: 280px;
+    border-radius: 12px;
+    outline: none;
+    margin: 0 40px;
+    box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.3);
+}
+
+.card .card-avtar {
+    color: var(--main-color);
+    font-size: 5rem;
+}
+
+.card .card-heading {
+    color: var(--text-heading);
+}
+
+.card .card-details {
+    color: var(--main-color);
+    max-width: 95%;
+}
+
+section:nth-child(2) {
+    position: relative;
+    background-color: #536dfe;
+}
+
+section:nth-child(3) {
+    background-image: linear-gradient(to left top, #e0f1ff, #e4edf9, #e7eaf3, #e7e8ec, #e6e6e6);
+}
+
+.about-container {
+    flex-direction: column;
+}
+
+.about-container .top,
+.middle {
+    justify-content: space-around;
+    padding: 50px 100px;
+}
+
+.about-container .top .left-card .card {
+    background-color: #eee;
+    height: 150px;
+    width: 300px;
+    border-radius: 12px;
+    outline: none;
+    margin: 0 40px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-container .top,
+.middle .details {
+    color: var(--text-color);
+}
+
+.about-container .middle {
+    flex-direction: row-reverse;
+}
+
+.about-container .middle .right-card .card {
+    background-color: #eee;
+    height: 150px;
+    width: 300px;
+    border-radius: 12px;
+    outline: none;
+    margin: 0 40px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about {
+    flex-direction: column;
+}
+
+.about h1 {
+    font-size: 2.5rem;
+    padding-top: 40px;
+}
+
+.about p {
+    font-weight: 300;
+    padding-top: 20px;
+}
+
+
+
+
+
+
+
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: all 2s ease;
+}
+
+.reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+
+
+footer {
+    position: relative;
+    bottom: 0;
+    border-top: 1px solid #EFFFFD;
+    width: 100%;
+    background-image: linear-gradient(to bottom, #536dfe, #4e5dcb, #464c9a, #3c3d6c, #2f2e41);
+    padding: 50px 100px;
+}
+
+footer .containers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    grid-auto-rows: minmax(min-content, max-content);
+}
+
+footer .containers .sec h2 {
+    font-size: 1.2rem;
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+}
+
+footer .containers .sec h2::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #2D31FA;
+}
+
+footer .containers .sec p {
+    font-size:var(--font-size);
+    padding-top: 10px;
+    color: #fff;
+}
+
+.sci {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    grid-gap: 10px;
+}
+
+.sci li {
+    list-style: none;
+}
+
+.sci li a {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.03);
+    display: grid;
+    align-content: center;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.sci li a:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.sci li a .fa {
+    font-size: 28px;
+    color: #fff;
+}
+
+.sci li a .fa-twitter:hover {
+    color: #1DA1F2;
+}
+
+.sci li a .fa-instagram:hover {
+    color: #8a3ab9;
+}
+
+.sci li a .fa-linkedin:hover {
+    color: #0077b5;
+}
+
+.sci li a .fa-youtube:hover {
+    color: #FF0000;
+}
+
+.quicklinks {
+    position: relative;
+}
+
+.quicklinks ul {
+    padding-top: 10px;
+}
+
+.quicklinks li {
+    list-style: none;
+}
+
+.quicklinks li a {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.quicklinks li a:hover {
+    color: #284d7a;
+}
+
+.info {
+    position: relative;
+    color: #fff;
+    padding-top: 10px;
+}
+
+.info li {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    margin-bottom: 16px;
+}
+
+.info li span:nth-child(1) {
+    padding-top: 10px;
+    padding-left: 5px;
+    font-size:20px;
+}
+
+.info li span {
+    font-size: 16px;
+    color: #fff;
+}
+
+.info a {
+    color: #eee;
+    text-decoration: none;
+}
+
+.info a:hover {
+    color: #284d7a;
+}
+
+
+
+
+@media only screen and (max-width: 470px) {
+
+    /* nav-bar start */
+    .bottom-navbar a {
+        font-size: 1.5rem;
+        padding: 1rem 1rem;
+    }
+
+    /* nav-bar end */
+
+}
+
+@media only screen and (max-width: 1019px) {
+
+    /* nav-bar start */
+    .nav-logo{
+        width: 40%;
+        transform: scale(0.9);
+        margin-bottom: 10px;
+    }
+    .nav-bar {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .nav-lists {
+        display: none;
+    }
+
+    .search-container {
+        padding: 0px 3rem;
+        width: 100%;
+    }
+
+    .search-container form {
+        width: 100%;
+    }
+
+    .search-container form input[type=text] {
+        height: 40px;
+        width: 100%;
+        transform: scale(0.9);
+    }
+
+    .bottom-navbar {
+        display: block;
+    }
+    /* nav-bar end */
+    
+    /* home page hero section start */
+    .container section .content {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+    .content .left-content .highlight-content h1{
+        text-align: center;
+        transform: scale(0.9) ;
+    }
+    .content .left-content .highlight-content p{
+        text-align: center;
+        transform: scale(0.8);
+    }
+    .content .explore {
+        justify-content: center;
+        transform: scale(0.9) ;
+    }
+    .content .right-content img{
+        -webkit-transform: scale(1);
+        transform: scale(0.9) ;
+    }
+    section .bottom-img{
+        display: none;
+    }
+    /* home page hero section end */
+    
+    /*Home page feature section-start  */
+   
+    .feature-container .feature-paragraph p{
+        font-size: 25px;
+    }
+    .feature-container .cards {
+        flex-direction: column;
+        row-gap: 26px;
+    }
+    /*Home page feature section-end  */
+
+    /* Home page About section start */
+    .about p{
+        /* text-align: center; */
+        font-size: 0.8rem;
+    }
+    .about-container .top
+    {
+        flex-direction: column;
+    }
+    .about-container .middle{
+        flex-direction: column;
+    }
+    .top .details h1, .middle .details h1{
+        text-align: center;
+        padding: 12px 0;
+    }
+    .top .details p, .middle .details p{
+        text-align: center;
+    }
+    .about-container .top,
+    .middle{
+        padding: 30px 100px;
+    }
+    /* Home page About section end */
+    footer {
+        padding: 60px;
+    }
+
+    footer .containers {
+        grid-template-columns: repeat(1, 2fr);
+    }
+}
+
+@media only screen and (max-width: 1145px) {
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius:4px;
+    /* background-image: linear-gradient(180deg, #536dfe 0%, #eee 174%); */
+    background:var(--text-color);
 }
 </style>
