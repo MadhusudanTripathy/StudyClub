@@ -1,314 +1,49 @@
-  <nav class="nav-bar flex-alignments">
-    <div class="nav-logo text-alignments">
-      <li><i class="fa-solid fa-cube text-color"></i>
-        <%=link_to :studyclub, questions_path, class:"text-color"%>
-      </div>
-      <div class="search-container flex-alignments content-justify-center">
-        <%=form_tag(search_path,:method=>"get") do%>
-          <%= search_field_tag :q, params[:q], placeholder:"Search Your Question", class:"text-alignments default-font-size border-style"%>
-          <%# <%= button_tag 'search', :name=>nil %>
-        <% end %>
-      </div>
-      <% if user_signed_in? %>
-        <div class="nav-lists">
-          <ul class="nav-items flex-alignments content-justify-center">
-            <div class="nav-profile-img">
-              <% if get_dashboard_instance(current_user.id) %>
-                <% if get_dashboard_instance(current_user.id).image.attached? %>
-                  <%= image_tag get_dashboard_instance(current_user.id).image,class:"radius" %>
-                <% else %>
-                  <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
-                <% end%>
+<nav class="nav-bar flex-alignments">
+  <div class="nav-logo text-alignments">
+    <li><i class="fa-solid fa-cube text-color"></i>
+      <%=link_to :studyclub, questions_path, class:"text-color"%>
+    </div>
+    <div class="search-container flex-alignments content-justify-center">
+      <%=form_tag(search_path,:method=>"get") do%>
+        <%= search_field_tag :q, params[:q], placeholder:"Search Your Question", class:"text-alignments default-font-size border-style"%>
+        <%# <%= button_tag 'search', :name=>nil %>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <div class="nav-lists">
+        <ul class="nav-items flex-alignments content-justify-center">
+          <div class="nav-profile-img">
+            <% if get_dashboard_instance(current_user.id) %>
+              <% if get_dashboard_instance(current_user.id).image.attached? %>
+                <%= image_tag get_dashboard_instance(current_user.id).image,class:"radius" %>
               <% else %>
                 <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
-              <% end %>
-            </div>
-            <li class="name"><%= current_user.full_name %></li>
-            <div class="tooltip">
-              <%= button_to '',destroy_user_session_path, method: :delete, class: "fa fa-sign-out" %>
-              <span class="tooltiptext">Log out</span>
-            </div>
-          </ul>
-        </div>
-      <% else %>
-        <div class="nav-lists">
-          <ul class="nav-items flex-alignments content-justify-center">
-            <!-- <li><a href="#">Home</a></li> -->
-            <!-- <li><a href="#">Blogs</a></li> -->
-            <!-- <li><a href="#">About</a></li>
+              <% end%>
+            <% else %>
+              <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+            <% end %>
+          </div>
+          <li class="name"><%= current_user.full_name %></li>
+          <div class="tooltip">
+            <%= button_to '',destroy_user_session_path, method: :delete, class: "fa fa-sign-out" %>
+            <span class="tooltiptext">Log out</span>
+          </div>
+        </ul>
+      </div>
+    <% else %>
+      <div class="nav-lists">
+        <ul class="nav-items flex-alignments content-justify-center">
+          <!-- <li><a href="#">Home</a></li> -->
+          <!-- <li><a href="#">Blogs</a></li> -->
+          <!-- <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li> -->
-            <li class="default-font-size">
+          <li class="default-font-size">
             <%= link_to 'Sign In', new_user_session_path,class:'btn btn-active text-alignments default-font-size border-style'  %>
-            </li>
-            <li class="default-font-size">
+          </li>
+          <li class="default-font-size">
             <%= link_to 'Sign Up',new_user_registration_path,class:'btn btn-inactive text-alignments default-font-size border-style'%>
-            </li>
-          </ul>
-        </div>
-      <% end %>
-    </nav>
-  <style>
-   :root {
-    --main-color: #E0F1FF;
-    --text-color: #303841;
-    --font-size: 16px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    -webkit-transition:-webkit-transform 2s;
-    transition: transform 2s;
-}
-
-
-/* Nav-bar start */
-
-
-.nav-bar {
-    justify-content: space-around;
-    padding: 0.7em;
-}
-.text-color{
-    color: var(--text-color);
-}
-.flex-alignments{
-    display: flex;
-    align-items: center;
-}
-.content-justify-center{
-    justify-content: center;
-}
-.text-alignments{
-    text-align: center;
-}
-.default-font-size{
-    font-size: var(--font-size);
-}
-.border-style{
-    border:none;
-}
-.nav-logo li a {
-    font-size: 2rem;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.nav-logo li i {
-    font-size: 2rem;
-}
-
-.nav-logo {
-    width: 30%;
-    transform: scale(1);
-}
-
-.nav-lists {
-    width: 30%;
-}
-
-.nav-lists ul li {
-    display: inline-block;
-}
-
-.nav-lists .nav-items li a {
-    font-weight: 500;
-}
-
-.nav-lists .nav-items li a i {
-    padding: 0 10px;
-}
-
-.search-container {
-    width: 60%;
-}
-
-.search-container form {
-    flex-direction: row-reverse;
-}
-
-.search-container form input[type=search] {
-    width: 500px;
-    height: 40px;
-    transform: scale(1);
-    /* border-radius: 50px; */
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-.search-container form button {
-    position: absolute;
-    height: 40px;
-    width: 50px;
-}
-
-.search-container form button  {
-  font-size: large;
-}
-
-.btn {
-    transform: scale(1);
-    margin: 0 10px;
-    padding: 10px 24px;
-    border-radius: 36px;
-    cursor: pointer;
-    transition: box-shadow 0.3s;
-}
-
-.btn-active {
-    background-color: #303841;
-    color: #fff;
-    border: 1px solid #000;
-}
-
-.btn-active:hover {
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.6);
-}
-
-.btn-inactive {
-    border: 1px solid #303841;
-    color: #000;
-}
-
-.btn-inactive:hover {
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.6);
-}
-.tooltip {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 80px;
-    background-color:var(--text-color);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 5px;
-    position: absolute;
-    z-index: 1;
-    top: 150%;
-    left: 150%;
-    margin-left: -60px;
-    opacity: 0;
-    transition:opacity 0.3s ease-in-out;
-  }
-
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent var(--text-color) transparent;
-}
-
-  .tooltip:hover .tooltiptext {
-    opacity: 1;
-    visibility: visible;
-  }
-
-.nav-items li{
-    padding:0 0 0 8px;
-    font-size: large;
-    text-align: center;
-    color: var(--text-color);
-}
-
-.nav-items .tooltip button{
-    padding:0 0 0 8px;
-    font-size: 24px;
-    color: var(--text-color);
-    background-color:#E7EAF3;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-.nav-items .nav-profile-img img{
-    object-fit: cover;
-    width: 40px;
-    height:40px;
-    padding: 1px;
-    border:1px solid #536dfe;
-    vertical-align: middle;
-}
-.radius{
-    border-radius: 50%;
-}
-
-/* Nav-bar end */
-
-@media only screen and (max-width: 470px) {
-
-
-
-    /* nav-bar end */
-
-}
-
-@media only screen and (max-width: 1019px) {
-
-    /* nav-bar start */
-    .nav-logo{
-        width: 30%;
-        /* transform: scale(0.9); */
-        /* margin-bottom: 10px; */
-    }
-    /* .nav-lists .nav-items li a i {
-        padding: 0 0px;
-    } */
-    .nav-logo li a{
-        display: none;
-    }
-    .nav-logo li i{
-        font-size: 38px;
-    }
-    .nav-bar {
-        flex-direction: row;
-        padding: 10px 0;
-    }
-    .nav-lists .tooltip{
-        display: none;
-    }
-    .nav-items .name{
-        display: none;
-    }
-
-    .search-container {
-        padding: 0px 0;
-        width: 100%;
-    }
-
-    .search-container form {
-        width: 100%;
-    }
-
-    .search-container form input[type=search] {
-        height: 40px;
-        width: 100%;
-        /* transform: scale(0.9); */
-    }
-
-
-    .left-navbar{
-        display: none;
-    }
-    /* nav-bar end */
-
-
-    footer {
-        padding: 60px;
-    }
-
-    footer .containers {
-        grid-template-columns: repeat(1, 2fr);
-    }
-}
-  </style>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </nav>

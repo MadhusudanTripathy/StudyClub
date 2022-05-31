@@ -3,7 +3,6 @@
   <div class="explore-container">
     <%= render 'layouts/left_sidebar'%>
     <div class="section-middle">
-      <br>
       <h3><%= params[:tag] %> questions</h3>
       <div class="asking-section" id="question-asked">
         <%@category_list.reverse_each do |q|%>
@@ -14,16 +13,16 @@
                   <% if get_dashboard_instance(q.user_id).image.attached? %>
                     <%= image_tag get_dashboard_instance(q.user_id).image %>
                   <% else %>
-                    <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg' %>
+                    <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
                   <% end %>
                 <% else %>
-                  <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg' %>
+                  <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
                 <% end %>
               </div>
               <div class="full-name-question">
-                <h2 class="user-full-name">
+                <h3 class="user-full-name">
                   <%= get_user_full_name(q.user_id) %>
-                </h2>
+                </h3>
                 <h5 class="question-time-stamp">
                   <%=q.created_at.to_fs(:short)%>
                 </h5>
@@ -31,17 +30,19 @@
                   <p><%=link_to q.question, question_path(q)  %></p>
                 </div>
                 <div class="response">
-                  <% pre_like = q.question_reactions.find { |like| like.user_id == current_user.id} %>
-                  <% if pre_like %>
-                    <%= button_to '',[q, pre_like], class: 'fa fa-thumbs-up like like-active', method: :delete %>
-                  <% else %>
-                    <%= button_to '', question_question_reactions_path(q),
+                  <div class="response-reaction">
+                    <% pre_like = q.question_reactions.find { |like| like.user_id == current_user.id} %>
+                    <% if pre_like %>
+                      <%= button_to '',[q, pre_like], class: 'fa fa-thumbs-up like like-active', method: :delete %>
+                    <% else %>
+                      <%= button_to '', question_question_reactions_path(q),
                     class: 'fa fa-thumbs-up like',
                     method: :post %>
-                  <% end %>
-                  &nbsp;
-                  <%=q.question_reactions.count%>
-                  <%=(q.question_reactions.count) == 1 ? 'Like' : 'Likes'%>
+                    <% end %>
+                    &nbsp;
+                    <%=q.question_reactions.count%>
+                    <%=(q.question_reactions.count) == 1 ? 'Like' : 'Likes'%>
+                  </div>
                 </div>
                 <h3><%=q.answers.count%> <%=(q.answers.count) == 1 ? 'Answer' : 'Answers'%></h3>
                 <%#=
@@ -54,14 +55,14 @@
                         <% if get_dashboard_instance(a.user_id).image.attached? %>
                           <%= image_tag get_dashboard_instance(a.user_id).image %>
                         <% else %>
-                          <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg' %>
+                          <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
                         <% end %>
                       <% else %>
-                        <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg' %>
+                        <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
                       <% end %>
                     </div>
                     <div class="full-name-question">
-                      <h2 class="user-full-name"><%= get_user_full_name(a.user_id) %></h2>
+                      <h3 class="user-full-name"><%= get_user_full_name(a.user_id) %></h3>
                       <h5 class="question-time-stamp">
                         <%=a.created_at.to_fs(:short)%>
                       </h5>
@@ -69,15 +70,17 @@
                         <p><%=a.answer%></p>
                       </div>
                       <div class="response">
-                        <% pre_like = a.answer_reactions.find { |like| like.user_id == current_user.id} %>
-                        <% if pre_like %>
-                          <%= button_to '',[q,a, pre_like] ,class: 'fa fa-thumbs-up like like-active', method: :delete  %>
-                        <% else %>
-                          <%= button_to '',  question_answer_answer_reactions_path(q,a),class: 'fa fa-thumbs-up like', method: :post %>
-                        <% end %>
-                        &nbsp;
-                        <%= a.answer_reactions.count %>
-                        <%= (a.answer_reactions.count) == 1 ? 'Like' : 'Likes'%>
+                        <div class="response-reaction">
+                          <% pre_like = a.answer_reactions.find { |like| like.user_id == current_user.id} %>
+                          <% if pre_like %>
+                            <%= button_to '',[q,a, pre_like] ,class: 'fa fa-thumbs-up like like-active', method: :delete  %>
+                          <% else %>
+                            <%= button_to '',  question_answer_answer_reactions_path(q,a),class: 'fa fa-thumbs-up like', method: :post %>
+                          <% end %>
+                          &nbsp;
+                          <%= a.answer_reactions.count %>
+                          <%= (a.answer_reactions.count) == 1 ? 'Like' : 'Likes'%>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -91,157 +94,3 @@
     <%=  render 'layouts/right_sidebar'%>
   </div>
 </div>
-<style>
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .explore-container{
-      display: flex;
-    }
-    /* .container{
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background-image: linear-gradient(to bottom right, #e0f1ff, #e4edf9, #e7eaf3, #e7e8ec, #e6e6e6);
-    } */
-    .section-middle{
-    flex: 4;
-    }
-    .ask-questions{
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
-    }
-    .ask-questions .question-form{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    }
-    .question-form textarea{
-    resize: none;
-    border: none;
-    padding: 5px;
-    outline: none;
-    margin-bottom: 1rem;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    /* border-radius: 8px; */
-    }
-    .question-form .question-category{
-    display: flex;
-    justify-content:end;
-    column-gap: 4px;
-    align-items: center;
-    }
-    .question-category span{
-    flex: 2;
-    font-weight: 600;
-    color: var(--text-heading);
-    }
-    .question-category input{
-    flex: 2;
-    height: 39px;
-    border: none;
-    outline: none;
-    /* border-radius: 4px; */
-    padding:5px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-
-    }
-    .button{
-    /* border-radius: 4px; */
-    background-color:#384955;
-    color: #fff;
-    font-size: var(--font-size);
-    border: none;
-    flex: 1;
-    padding: 10px 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-    }
-    .asking-section{
-    max-height:89vh;
-    overflow: auto;
-    }
-    .asking-section .asking-card{
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    /* max-height:20%; */
-    border-bottom: 1px solid #303841;
-    /* border-radius: 8px; */
-    /* overflow: auto; */
-    padding: 10px;
-    outline: none;
-    /* box-shadow: 0 8px 16px -16px rgba(0, 0, 0, 0.3); */
-    }
-
-    .qna-card {
-    display: flex;
-    }
-    .avtar-response{
-    display: flex;
-    flex-direction: column;
-    /* align-items:center; */
-    }
-
-    .avtar-response img{
-    width: 60px;
-    clip-path: circle();
-    margin-top: 4PX;
-    }
-    .full-name-question {
-
-    }
-    .full-name-question .user-full-name{
-    color: var(--text-heading);
-    }
-    .full-name-question .question-time-stamp{
-    color: var(--text-heading);
-    }
-    .full-name-question .question p{
-    padding: 6px 0;
-    font-size: var(--font-size);
-    }
-    .answer{
-    display: flex;
-    }
-    .full-name-question h3{
-    padding: 6px 0;
-    color: var(--text-heading);
-    }
-    .response{
-      display: flex;
-      align-items: center;
-      }
-    .response .like{
-      /* display: block; */
-    font-size: 20px;
-      background-color: transparent;
-      outline: none;
-      border: none;
-    color: #999;
-    cursor: pointer;
-    }
-
-    .response .like-active{
-      color: #2155CD;
-    }
-
-    .like-value{
-      display:inline;
-    }
-    @media only screen and (max-width: 950px){
-    .section-middle{
-          flex:content;
-      }
-      .explore-container{
-          flex-wrap: wrap;
-      }
-    }
-</style>

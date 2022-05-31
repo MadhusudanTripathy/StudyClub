@@ -1,5 +1,14 @@
 <div>
-  <h6 class="name"> <%= message.user.email %> </h6>
+  <% if get_dashboard_instance(message.user.id) %>
+    <% if get_dashboard_instance(message.user.id).image.attached? %>
+      <%= image_tag get_dashboard_instance(message.user.id).image %>
+    <% else %>
+      <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+    <% end %>
+  <% else %>
+    <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+  <% end %>
+  <h6 class="name"> <%= message.user.user_name %> </h6>
   <p>
     <%= message.content %>
   </p>

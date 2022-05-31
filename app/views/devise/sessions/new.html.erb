@@ -1,34 +1,32 @@
-
-
-<section>
-  <div class="photo-container">
+<section class="signin-section">
+  <div class="signin-photo-container">
   </div>
-  <div class="form-container">
-    <div class="form-inputs">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form">
-          <div class="form-left">
+  <div class="signin-form-container">
+    <div class="signin-form-inputs">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name),class:'form-tag') do |f| %>
+        <div class="signin-form">
+          <div class="signin-form-left">
             <li><a href="#"><i class="fa-solid fa-cube"></i>studyclub</a></li>
             <p>Welcome To StudyClub Please Sign in To Your Account</p>
-            <div class="floating-label field">
+            <div class="floating-label">
               <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"floating-input" %>
               <span class="highlight"></span>
               <%= f.label :Email %>
             </div>  
         
-            <div class="floating-label field">
+            <div class="floating-label">
               <%= f.password_field :password, autocomplete: "current-password",class:"floating-input" %>
               <span class="highlight"></span>
               <%= f.label :Password %><br />
             </div>
           </div>
           <% if devise_mapping.rememberable? %>
-          <div class="forgot field">
+          <div class="forgot">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
           <% end %>
-          <div class="action btn signup-btn">
+          <div class="action signin-action-btn signup-btn">
               <%= f.submit "Sign in" %>
             <h5>If you don't have an account?</h5>
             <%= link_to 'Sign Up', new_user_registration_path %>
@@ -39,250 +37,3 @@
     </div>
 </div>
 </section>
-<style>
-:root {
-  --main-color: #E0F1FF;
-  --text-color: #303841;
-  --lable-color: #536dfe;
-  --font-size: 16px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-transition: -webkit-transform 2s;
-  transition: transform 2s;
-}
-
-section {
-  display: flex;
-  min-height: 100vh;
-}
-
-.form-container .form-logo {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.form-left li a {
-  color: var(--text-color);
-  font-size: 2.1rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.photo-container {
-  flex: 1;
-  background: url('/assets/signup-img.jpg') no-repeat center/cover;
-}
-
-.form-container {
-  flex: 1;
-}
-
-.form-left p {
-  width: 80%;
-  margin-top: 18px;
-  text-align: left;
-  font-size: 14px;
-}
-
-.form-inputs {
-  padding: 5% 5%;
-}
-form{
-  margin: 10% 20% 0;
-}
-.form {
-  /* margin: 5% 20%; */
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(1, minmax(100px, 2fr));
-}
-
-.floating-label {
-  position: relative;
-  margin-bottom: 20px;
-  margin-top: 40px;
-}
-.forgot{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.forgot label {
-  flex:1;
-  color: #999;
-  font-size: 14px;
-}
-.forgot a{
-  color: #536dfe;
-  font-size: 14px;
-}
-.btn input[type=submit] {
-  width: 100%;
-  background-color: var(--text-color);
-  padding: 12px;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: var(--main-color);
-  font-size: 16px;
-
-}
-
-.btn input[type=submit]:hover {
-  transition: box-shadow 0.3s;
-  cursor: pointer;
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.6);
-}
-
-.btn h5 {
-  padding-top: 1.5rem;
-  color: var(--text-color);
-}
-
-.btn a {
-  font-size: 14px;
-  color: var(--text-color);
-}
-
-.floating-input,
-.floating-select {
-  font-size: 14px;
-  padding: 4px 4px;
-  display: block;
-  width: 100%;
-  height: 30px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid var(--text-color);
-}
-
-.floating-input:focus,
-.floating-select:focus {
-  outline: none;
-  border: 2px solid var(--lable-color);
-}
-
-.floating-label label {
-  color: #999;
-  font-size: 14px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 5px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-
-.floating-input:focus~label,
-.floating-input:not(:placeholder-shown)~label {
-  top: -18px;
-  font-size: 14px;
-  color: var(--lable-color);
-}
-
-.floating-select:focus~label,
-.floating-select:not([value=""]):valid~label {
-  top: -18px;
-  font-size: 14px;
-  color: var(--lable-color);
-}
-
-/* active state */
-.floating-input:focus~.bar:before,
-.floating-input:focus~.bar:after,
-.floating-select:focus~.bar:before,
-.floating-select:focus~.bar:after {
-  width: 50%;
-}
-
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* highlighter */
-.highlight {
-  position: absolute;
-  height: 50%;
-  width: 100%;
-  top: 15%;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* active state */
-.floating-input:focus~.highlight,
-.floating-select:focus~.highlight {
-  -webkit-animation: inputHighlighter 0.3s ease;
-  -moz-animation: inputHighlighter 0.3s ease;
-  animation: inputHighlighter 0.3s ease;
-}
-
-/* animation */
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: var(--lable-color);
-  }
-
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-
-@-moz-keyframes inputHighlighter {
-  from {
-    background: var(--lable-color);
-  }
-
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-
-@keyframes inputHighlighter {
-  from {
-    background: var(--lable-color);
-  }
-
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@media only screen and (max-width: 910px){
-  .photo-container{
-    display: none;
-  }
-  .form-container{
-    background: url(./images/signup-img.jpg) no-repeat center/cover;
-  }
-  .form-left p {
-    width:70%;
-  }
-  form{
-    box-shadow: 0px 0px 18px rgba(227, 226, 226, 0.3);
-    background-color: #eee;
-    padding:10px;
-    width: 80%;
-    margin: 10% auto;
-  }
-
-}
-</style>

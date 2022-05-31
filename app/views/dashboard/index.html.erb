@@ -6,7 +6,11 @@
         <% if @dashboard%>
           <div class="profile">
             <div class="profile-img radius">
-              <%= image_tag @dashboard.image, class:'radius' %>
+              <% if @dashboard.image.attached? %>
+                <%= image_tag @dashboard.image, class:'radius' %>
+              <% else %>
+                <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+              <% end %>
             </div>
             <div class="profile-details">
               <big><b><%=current_user.full_name%></b></big>
@@ -23,7 +27,7 @@
                 <%=@dashboard.bio%>
               </p>
               <i class="fas fa-edit">
-              <%= link_to :Edit_Profile,edit_dashboard_path(@dashboard.user_id),id:"edit-profile"%></i>
+                <%= link_to 'Edit Profile',edit_dashboard_path(@dashboard.id),  id:"edit-profile"%></i>
               <%# <a href="./edit_profile.html" id="edit-profile"><i class="fas fa-edit"></i>Edit Profile</a> %>
             </div>
           </div>
@@ -36,310 +40,96 @@
               <big><b><%=current_user.full_name%></b></big>
               <small>
                 <%= link_to 'Create Profile',new_dashboard_path,id:"edit-profile"%>
-                <%# <a href="./edit_profile.html" id="edit-profile">Edit Profile</a> %>
+              </small>
+              <%# <a href="./edit_profile.html" id="edit-profile">Edit Profile</a> %>
+            </div>
+          </div>
+        <% end%>
+        <div class="profile-buttons">
+          <button type="button" class="btn questions-asked" id="questions">Questions Asked</button>
+          <button type="button" class="btn questions-answered" id="answers">Questions Answered</button>
+        </div>
+        <div class="dashboard-asking-section" id="question-asked">
+          <% @questions_asked.each do |q| %>
+            <div class="asking-card">
+              <div class="user-asked">
+                <div class="card-profile-img radius">
+                  <% if get_dashboard_instance(q.user_id) %>
+                    <% if get_dashboard_instance(q.user_id).image.attached? %>
+                      <%= image_tag get_dashboard_instance(q.user_id).image, class:'radius' %>
+                    <% else %>
+                      <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+                  <% end %>
+                </div>
+                <div class="user-name">
+                  <h4><%= get_user_full_name(q.user_id)%></h4>
+                  <small><%=q.created_at.to_fs(:short)%></small>
+                </div>
+              </div>
+              <div class="user-questions">
+                <p>
+                  <%= link_to q.question, question_path(q) %>
+                </p>
               </div>
             </div>
-        <% end%>
-          <div class="profile-buttons">
-            <button type="button" class="btn questions-asked" id="questions">Questions Asked</button>
-            <button type="button" class="btn questions-answered" id="answers">Questions Answered</button>
-          </div>
-          <div class="asking-section" id="question-asked">
-            <% @questions_asked.each do |q| %>
-              <div class="asking-card">
-                <div class="user-asked">
-                  <div class="card-profile-img radius">
-                    <% if get_dashboard_instance(q.user_id) %>
-                      <% if get_dashboard_instance(q.user_id).image.attached? %>
-                        <%= image_tag get_dashboard_instance(q.user_id).image, class:'radius' %>
-                      <% else %>
-                        <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg',class:'radius' %>
-                      <% end %>
+          <% end %>
+        </div>
+        <div class="dashboard-asking-section" id="question-answered">
+          <% @questions_answered.each do |q| %>
+            <div class="asking-card">
+              <div class="user-asked">
+                <div class="card-profile-img radius">
+                  <% if get_dashboard_instance(q.user_id) %>
+                    <% if get_dashboard_instance(q.user_id).image.attached? %>
+                      <%= image_tag get_dashboard_instance(q.user_id).image, class:'radius' %>
                     <% else %>
-                      <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg' %>
+                      <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
                     <% end %>
-                  </div>
-                  <div class="user-name">
-                    <h4><%= get_user_full_name(q.user_id)%></h4>
-                    <small><%=q.created_at.to_fs(:short)%></small>
-                  </div>
+                  <% else %>
+                    <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
+                  <% end %>
                 </div>
-                <div class="user-questions">
-                  <p>
-                    <%= link_to q.question, question_path(q) %>
-                  </p>
+                <div class="user-name">
+                  <h4><%= get_user_full_name(q.user_id)%></h4>
+                  <small><%=q.created_at.to_fs(:short)%></small>
                 </div>
               </div>
-            <% end %>
-          </div>
-          <div class="asking-section" id="question-answered">
-            <% @questions_answered.each do |q| %>
-              <div class="asking-card">
-                <div class="user-asked">
-                  <div class="card-profile-img radius">
-                    <% if get_dashboard_instance(q.user_id) %>
-                      <% if get_dashboard_instance(q.user_id).image.attached? %>
-                        <%= image_tag get_dashboard_instance(q.user_id).image, class:'radius' %>
-                      <% else %>
-                        <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg', class:'radius' %>
-                      <% end %>
-                    <% else %>
-                      <%= image_tag 'https://aui.atlassian.com/aui/8.8/docs/images/avatar-person.svg' %>
-                    <% end %>
-                  </div>
-                  <div class="user-name">
-                    <h4><%= get_user_full_name(q.user_id)%></h4>
-                    <small><%=q.created_at.to_fs(:short)%></small>
-                  </div>
-                </div>
-                <div class="user-questions">
-                  <p>
-                    <%= link_to get_question(q.id), question_path(q.question_id) %>
-                  </p>
-                </div>
+              <div class="user-questions">
+                <p>
+                  <%= link_to get_question(q.id), question_path(q.question_id) %>
+                </p>
               </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       </div>
-      <%=  render 'layouts/right_sidebar'%>
     </div>
+    <%=  render 'layouts/right_sidebar'%>
   </div>
-  <script>
-    let questionsBtn = document.getElementById("questions");
-    let answersBtn = document.getElementById("answers");
-    let questionAsked = document.getElementById("question-asked");
-    let questionAnswered = document.getElementById("question-answered");
+</div>
+<script>
+  let questionsBtn = document.getElementById("questions");
+  let answersBtn = document.getElementById("answers");
+  let questionAsked = document.getElementById("question-asked");
+  let questionAnswered = document.getElementById("question-answered");
 
-    questionsBtn.onclick = function () {
-      questionAsked.style.display = "block";
-        questionAnswered.style.display = "none";
-        questionsBtn.style.backgroundColor = "#303841";
-        answersBtn.style.backgroundColor = "#fff";
-        answersBtn.style.color = "#303841";
-        questionsBtn.style.color = "#fff";
-    }
-    answersBtn.onclick = function () {
-        questionAsked.style.display = "none";
-        questionAnswered.style.display = "block";
-        questionsBtn.style.backgroundColor = "#fff";
-        answersBtn.style.backgroundColor = "#303841";
-        answersBtn.style.color = "#fff";
-        questionsBtn.style.color = "#303841";
-    }
-  </script>
-  <style>
-    :root {
-    --background-color: #E0F1FF;
-    --text-heading: #303841;
-    --text-details: #cccccc;
-    --font-size: 16px;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.dashboard-container{
-  display:flex;
-
-}
-.section-left{
-    flex: 4;
-}
-.dashboard-left-container{
-    display: flex;
-    flex-direction: column;
-    min-height: 89vh;
-    flex: 4;
-}
-.section-left .profile{
-    display: grid;
-    grid-template-columns:0fr 2fr;
-    padding: 1rem;
-    align-items: center;
-    /* grid-auto-rows: 200px; */
-
-}
-.profile-buttons{
-    padding: 1rem;
-}
-.profile-img{
-    width: 150px;
-    height: 150px;
-    padding: 4px;
-    border:4px solid #536dfe;
-}
-.card-profile-img{
-    width: 50px;
-    height: 50px;
-    padding: 1px;
-    border:1px solid #536dfe;
-}
-.radius{
-    border-radius: 50%;
-}
-.section-left .profile .profile-img img, .user-asked .card-profile-img img{
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-.profile .profile-details{
-    display: flex;
-    flex-direction: column;
-    padding:12px 20px;
-}
-.profile .profile-details big{
-    font-size: 2rem;
-}
-small ul{
-    display: flex;
-    padding-left: 0;
-}
-small ul li{
-    list-style-position:inside;
-    font-size: 14px;
-    padding-top: 12px;
-    padding:8px 16px 8px 0;
-}
-.profile-details b{
-    color: var(--text-heading);
-}
-.profile-details p{
-    font-size: var(--font-size);
-    padding-bottom:8px;
-}
-.profile-details a{
-    font-size: 14px;
-    color: #999;
-}
-.profile-buttons{
-    display: flex;
-}
-.profile-buttons .btn{
-    width: 150px;
-    padding: 10px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.btn.questions-asked{
-  background-color:#303841;
-  color:#fff;
-  border: 1px solid #303841;
-}
-.btn.questions-asked:hover{
-  transform: scale(1.04);
-}
-.btn.questions-answered{
-  margin-left: 20px;
-  background-color: #fff;
-  color: #303841;
-  border: 1px solid #303841;
-}
-.btn.questions-answered:hover{
-    transform: scale(1.04);
-}
-.asking-section{
-    height:260px;
-    overflow: auto;
-}
-.asking-section .asking-card{
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    padding: 10px;
-    outline: none;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-}
-.asking-section .asking-card .user-asked{
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-}
-.user-img{
-    /* height: 50px;
-    width: 50px;
-    background-color: orange;
-    border-radius: 50%; */
-}
-.asking-card .user-name{
-    display: grid;
-    row-gap: 6px;
-    place-content: center;
-}
-.asking-card .user-name a{
-    color: var(--text-heading);
-    text-decoration: none;
-}
-
-.question-answer{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    min-height: 89vh;
-}
-.question-answer .score-cards{
-    display: flex;
-    justify-content: space-between;
-    column-gap:10px;
-    margin: 1rem;
-}
-#question-answered{
-    display: none;
-}
-
-@media only screen and (max-width: 950px) {
-
-    .question-answer{
-        grid-template-rows:repeat(2,1fr);
-    }
-    .question-answer .score-cards{
-        display: flex;
-        justify-content: space-around;
-    }
-    .section-left{
-
-        flex:content;
-    }
-    .dashboard-container{
-        flex-wrap: wrap;
-    }
-
-}
-
-@media only screen and (max-width: 590px){
-    .section-left .profile{
-        grid-template-columns:1fr;
-        place-items: center;
-    }
-    .profile .profile-details {
-        justify-content: center;
-        align-items: center;
-        padding: 12px 16px;
-    }
-    .profile-buttons{
-        justify-content: center;
-    }
-    .profile-details p{
-        text-align: center;
-    }
-    .profile-buttons{
-        margin: 0;
-        padding: 1rem;
-    }
-}
-
-
-
-::-webkit-scrollbar {
-    display: none;
-}
-.asking-section{
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
-    overflow-y: scroll;
-}
-  </style>
+  questionsBtn.onclick = function () {
+    questionAsked.style.display = "block";
+      questionAnswered.style.display = "none";
+      questionsBtn.style.backgroundColor = "#303841";
+      answersBtn.style.backgroundColor = "#fff";
+      answersBtn.style.color = "#303841";
+      questionsBtn.style.color = "#fff";
+  }
+  answersBtn.onclick = function () {
+      questionAsked.style.display = "none";
+      questionAnswered.style.display = "block";
+      questionsBtn.style.backgroundColor = "#fff";
+      answersBtn.style.backgroundColor = "#303841";
+      answersBtn.style.color = "#fff";
+      questionsBtn.style.color = "#303841";
+  }
+</script>
