@@ -14,15 +14,22 @@
         </div>
       </div>
       <div class="trending-cards">
-        <h3>Trending Topics Today</h3>
-        <%get_trend_hash[0..2].each do |arr|%>
-          <div class="trending-topics">
-            <h5>
-              <%= link_to arr[0],category_path(arr[0]) %>
-            </h5>
-            <span class="total-answers"><%=arr[1]%> Questions Posted</span>
-          </div>
-        <%end%>
+        <div>
+          <h3>Trending Topics</h3>
+        </div>
+        <div class="trending-result">
+          <%get_trend_hash[0..2].each do |arr|%>
+            <div class="trending-topics">
+              <h5>
+                <%= link_to arr[0],category_path(arr[0]) %>
+              </h5>
+              <span class="total-answers"><%=arr[1]%> Questions Posted</span>
+            </div>
+          <%end%>
+        </div>
+      </div>
+      <div class="trending-cards">
+      
       </div>
     </div>
   </div>

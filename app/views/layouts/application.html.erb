@@ -13,8 +13,27 @@
     <%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "signin", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "signup", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "chatroom", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://kit.fontawesome.com/89f5a08ecd.js" crossorigin="anonymous"></script>
+    <style>
+      <%= ".sender-#{current_user&.id}" %>{
+              background: rgb(0, 119, 255) !important;
+              color: #000 !important;
+              margin-left: auto !important;
+              margin-right: 0 !important;
+              right: 0 !important;
+              left: unset !important;
+          }
+          <%= ".sender-#{current_user&.id}" %> p {
+              color: #fff !important;
+          }
+          <%= ".sender-#{current_user&.id}" %> h4 {
+              right: 0 !important;
+              left: unset !important;
+              text-align: end !important;
+          }
+    </style>
   </head>
   <body>
     <div class="show_message">

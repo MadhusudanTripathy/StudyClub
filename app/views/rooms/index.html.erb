@@ -1,22 +1,54 @@
-<div class="container">
-  <h5> Hi <%= @current_user.user_name %> </h5>
-  <h4> Users </h4>
-  <%= turbo_stream_from "users" %>
-  <div id="users">
-    <%= render @users %>
-  </div>
-  <h4> Rooms </h4>
-  <%= turbo_stream_from "rooms" %>
-  <div id="rooms">
-    <%= render @rooms %>
-  </div>
-  <%= render partial: "layouts/new_room_form" %>
-  <% if @single_room %>
-    <h4 class="text-center"> <%= @single_room.name %> </h4>
-    <%= turbo_stream_from @single_room %>
-    <div id="messages">
-        <%= render @messages%>
+<div class="container-bg">
+  <%= render 'layouts/navbar'%>
+  <div class="chat-container">
+    <div class="chat-room-category">
+      <div class="chat-room-category-card">
+        <div class="chat-room-add-form">
+          <%= render partial: "layouts/new_room_form" %>
+          <h3 class="chat-room-heading">Chat Rooms</h3>
+        </div>
+        <%= turbo_stream_from "rooms" %>
+        <div class="chat-room-link-section" id="rooms">
+          <%= render @rooms %>
+        </div>
+      </div>
     </div>
-    <%= render partial: 'layouts/new_message_form' %>
-  <% end %>
+    <% if @single_room %>
+      <div class="chat-room-middle-section">
+        <h2><%= @single_room.name %></h2>
+        <section class="chat-section">
+          <%= turbo_stream_from @single_room %>
+          <div class="message-area" id="messages">
+            <%= render @messages%>
+          </div>
+          <div>
+            <%= render partial: 'layouts/new_message_form' %>
+          </div>
+        </section>
+      </div>
+    <% end %>
+    <div class="chat-room-user-show">
+      <div class="chat-room-user-show-card">
+        <center>
+          <h4>
+          </h4>
+        </center>
+        <hr>
+        <center>
+          <h4>
+            Registered Users
+          </h4>
+        </center>
+        <hr>
+        <%= turbo_stream_from "users" %>
+        <div class="chat-room-user-section",id="users" >
+          <div class="chat-room-link">
+            <h4><%= current_user.user_name %> [You]
+            </h4>
+          </div>
+          <%= render @users %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
